@@ -16,10 +16,22 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@lovable_dev" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    
+    <!-- n8n Chat Widget -->
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
   </head>
 
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- n8n Chat Widget Script -->
+    <script type="module">
+      import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+      createChat({
+        webhookUrl: 'https://douglas-n8n.zvqify.easypanel.host/webhook/a7aed82e-9803-478d-9659-fdbd13ae76be/chat'
+      });
+    </script>
   </body>
 </html>
