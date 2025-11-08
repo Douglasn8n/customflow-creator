@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primeira Mente - Soluções em IA</title>
+    <meta name="description" content="Transforme seu negócio com inteligência artificial. Automatize processos, integre sistemas e aumente seu faturamento com soluções personalizadas em IA.">
+    <meta name="author" content="Primeira Mente">
+    <meta name="keywords" content="inteligência artificial, IA, automação, integração de sistemas, chatbots, machine learning, AI solutions">
+    
+    <meta property="og:title" content="Primeira Mente - Soluções em IA">
+    <meta property="og:description" content="Transforme seu negócio com inteligência artificial. Automatize processos, integre sistemas e aumente seu faturamento.">
+    <meta property="og:type" content="website">
+    
+    <!-- n8n Chat Widget -->
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #1e5ba8;
+            --primary-dark: #164a8d;
+            --secondary: #6366f1;
+            --accent: #ec4899;
+            --background: #0a0f1e;
+            --card: #1a1f2e;
+            --foreground: #ffffff;
+            --muted: #94a3b8;
+            --border: #2d3748;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--background);
+            color: var(--foreground);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 15, 30, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+        
+        .logo {
+            height: 48px;
+            width: auto;
+        }
+        
+        .nav-links {
+            display: none;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+            .mobile-menu-btn {
+                display: none !important;
+            }
+        }
+        
+        .nav-links button {
+            background: none;
+            border: none;
+            color: var(--foreground);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .nav-links button:hover {
+            color: var(--primary);
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            color: var(--foreground);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .mobile-nav.active {
+            display: flex;
+        }
+        
+        .mobile-nav button {
+            background: none;
+            border: none;
+            color: var(--foreground);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: left;
+            padding: 0.5rem 0;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1e5ba8 0%, #6366f1 50%, #ec4899 100%);
+            padding-top: 80px;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 5%;
+            width: 300px;
+            height: 300px;
+            background: rgba(30, 91, 168, 0.3);
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: pulse 4s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+        
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            padding: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #a78bfa, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+        }
+        
+        .hero .btn {
+            font-size: 1.125rem;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 0 30px rgba(30, 91, 168, 0.5);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 5rem;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+        
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            background: rgba(30, 91, 168, 0.2);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Solutions Section */
+        .solutions {
+            padding: 5rem 0;
+            background: rgba(26, 31, 46, 0.5);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.25rem;
+            color: var(--muted);
+            margin-bottom: 4rem;
+        }
+        
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .solution-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .solution-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(30, 91, 168, 0.2);
+        }
+        
+        .solution-card .icon-box {
+            background: rgba(30, 91, 168, 0.1);
+            margin: 0 0 1.5rem 0;
+        }
+        
+        .solution-card:hover .icon-box {
+            background: rgba(30, 91, 168, 0.2);
+        }
+        
+        /* Why Section */
+        .why-section {
+            padding: 5rem 0;
+            background: var(--background);
+        }
+        
+        .why-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .problem-box, .solution-box {
+            padding: 2rem;
+            border-radius: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .problem-box {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+        
+        .solution-box {
+            background: rgba(30, 91, 168, 0.05);
+            border: 1px solid rgba(30, 91, 168, 0.2);
+        }
+        
+        .check-item, .x-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .check-icon {
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+        
+        .x-icon {
+            color: #ef4444;
+            flex-shrink: 0;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background: var(--background);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            color: var(--foreground);
+            font-family: inherit;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        
+        .contact-item .icon-box {
+            background: rgba(30, 91, 168, 0.1);
+            margin: 0;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--card);
+            border-top: 1px solid var(--border);
+            padding: 3rem 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-logo {
+            grid-column: span 2;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+        }
+        
+        /* SVG Icons */
+        .icon {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div>
+                <img src="/src/assets/logo-primeira-mente.jpeg" alt="Primeira Mente" class="logo">
+            </div>
+            
+            <div class="nav-links">
+                <button onclick="scrollToSection('inicio')">Início</button>
+                <button onclick="scrollToSection('solucoes')">Soluções</button>
+                <button onclick="scrollToSection('sobre')">Sobre</button>
+                <button class="btn" onclick="scrollToSection('contato')">Contato</button>
+            </div>
+            
+            <button class="mobile-menu-btn" onclick="toggleMenu()">
+                <span id="menu-icon">☰</span>
+            </button>
+        </nav>
+        
+        <div class="mobile-nav" id="mobile-nav">
+            <button onclick="scrollToSection('inicio')">Início</button>
+            <button onclick="scrollToSection('solucoes')">Soluções</button>
+            <button onclick="scrollToSection('sobre')">Sobre</button>
+            <button class="btn" onclick="scrollToSection('contato')">Contato</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content container">
+            <h1>
+                Automatize. Integre. 
+                <span class="gradient-text">Cresça.</span>
+            </h1>
+            
+            <p>
+                Soluções em inteligência artificial que otimizam processos,
+                conectam sistemas e fazem o seu negócio crescer exponencialmente.
+            </p>
+            
+            <button class="btn" onclick="scrollToSection('contato')">
+                Começar Agora
+            </button>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon-box">⚡</div>
+                    <h3>IA Avançada</h3>
+                    <p>Automatize processos complexos com inteligência artificial de última geração.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="icon-box">🧠</div>
+                    <h3>Integração Total</h3>
+                    <p>Conecte todos os seus sistemas em uma plataforma unificada e inteligente.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="icon-box">✨</div>
+                    <h3>Resultados Reais</h3>
+                    <p>Aumente sua eficiência e faturamento com soluções personalizadas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solucoes" class="solutions">
+        <div class="container">
+            <h2 class="section-title">Nossas Soluções</h2>
+            <p class="section-subtitle">
+                Transforme seu negócio com inteligência artificial aplicada de forma estratégica
+            </p>
+            
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <div class="icon-box">🤖</div>
+                    <h3>Chatbots Inteligentes</h3>
+                    <p>Atendimento automatizado 24/7 com IA que entende e responde seus clientes de forma natural.</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="icon-box">⚙️</div>
+                    <h3>Automação de Processos</h3>
+                    <p>Automatize tarefas repetitivas e libere sua equipe para o que realmente importa.</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="icon-box">💾</div>
+                    <h3>Gestão de Dados</h3>
+                    <p>Centralize e analise seus dados de forma inteligente para tomar decisões melhores.</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="icon-box">💬</div>
+                    <h3>Integração de Sistemas</h3>
+                    <p>Conecte CRMs, ERPs e outras ferramentas em uma plataforma unificada.</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="icon-box">📊</div>
+                    <h3>Análise Preditiva</h3>
+                    <p>Use IA para prever tendências e antecipar necessidades do seu negócio.</p>
+                </div>
+                
+                <div class="solution-card">
+                    <div class="icon-box">🛡️</div>
+                    <h3>Segurança e Compliance</h3>
+                    <p>Soluções que garantem proteção de dados e conformidade com regulamentações.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Section -->
+    <section id="sobre" class="why-section">
+        <div class="container">
+            <div class="why-content">
+                <h2 class="section-title">Por que sua empresa precisa de IA?</h2>
+                <p class="section-subtitle">(E o que você está perdendo por não ter)</p>
+                
+                <p style="font-size: 1.125rem; margin-bottom: 2rem;">
+                    Toda empresa nasce para crescer, mas na prática, o que mais trava o crescimento não são as ideias, 
+                    nem a vontade de fazer acontecer. <strong>São os processos manuais.</strong> 
+                    <strong>O tempo gasto com tarefas repetitivas. Os esquecimentos. A falta de organização.</strong>
+                </p>
+                
+                <div class="problem-box">
+                    <div class="x-item">
+                        <span class="x-icon">✖</span>
+                        <p><strong>Quantos contatos ficaram sem resposta</strong> ou desistiram porque ninguém viu a mensagem a tempo?</p>
+                    </div>
+                    <div class="x-item">
+                        <span class="x-icon">✖</span>
+                        <p><strong>Quantos clientes deixaram de voltar</strong> porque não receberam um simples lembrete ou contato de acompanhamento?</p>
+                    </div>
+                    <div class="x-item">
+                        <span class="x-icon">✖</span>
+                        <p><strong>Quantas vezes sua equipe perdeu tempo</strong> com agendamentos e outras tarefas que poderiam ser automáticos?</p>
+                    </div>
+                </div>
+                
+                <p style="font-size: 1.125rem; margin: 2rem 0;">
+                    Esses pequenos gargalos custam caro. E o pior: <strong>eles se repetem todos os dias.</strong>
+                </p>
+                
+                <h3 style="color: var(--primary); font-size: 1.5rem; margin-bottom: 1.5rem;">
+                    A inteligência artificial resolve isso. E vai além.
+                </h3>
+                
+                <p style="font-size: 1.125rem; margin-bottom: 1.5rem;">
+                    <strong>Quando você automatiza com inteligência, sua empresa:</strong>
+                </p>
+                
+                <div class="solution-box">
+                    <div class="check-item">
+                        <span class="check-icon">✓</span>
+                        <p><strong>Ganha tempo</strong> - Sua equipe foca no que realmente importa</p>
+                    </div>
+                    <div class="check-item">
+                        <span class="check-icon">✓</span>
+                        <p><strong>Reduz erros</strong> - Processos automatizados são mais precisos</p>
+                    </div>
+                    <div class="check-item">
+                        <span class="check-icon">✓</span>
+                        <p><strong>Organiza fluxos internos</strong> - Tudo funciona de forma sincronizada</p>
+                    </div>
+                    <div class="check-item">
+                        <span class="check-icon">✓</span>
+                        <p><strong>Melhora a experiência do cliente</strong> - Atendimento rápido e personalizado</p>
+                    </div>
+                    <div class="check-item">
+                        <span class="check-icon">✓</span>
+                        <p><strong>Aumenta o faturamento</strong> - Mais eficiência = mais resultados</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="contact">
+        <div class="container">
+            <h2 class="section-title">Vamos Conversar?</h2>
+            <p class="section-subtitle">Estamos prontos para transformar seu negócio com IA</p>
+            
+            <div class="contact-grid">
+                <div>
+                    <form onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Nome Completo</label>
+                            <input type="text" id="name" name="name" placeholder="Seu nome" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Telefone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="(00) 00000-0000">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" name="message" placeholder="Conte-nos sobre seu projeto..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn" style="width: 100%;">Enviar Mensagem</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <div>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Informações de Contato</h3>
+                        <p style="color: var(--muted); margin-bottom: 2rem;">
+                            Entre em contato conosco para discutir como podemos ajudar sua empresa a crescer com inteligência artificial.
+                        </p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="icon-box">📧</div>
+                        <div>
+                            <h4>E-mail</h4>
+                            <a href="mailto:contato@primeiramente.com.br" style="color: var(--muted);">contato@primeiramente.com.br</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="icon-box">📱</div>
+                        <div>
+                            <h4>Telefone</h4>
+                            <a href="tel:+5531994522520" style="color: var(--muted);">(31) 99452-2520</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="icon-box">📍</div>
+                        <div>
+                            <h4>Localização</h4>
+                            <p style="color: var(--muted);">Atendimento em todo Brasil</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <img src="/src/assets/logo-primeira-mente.jpeg" alt="Primeira Mente" style="height: 64px; margin-bottom: 1rem;">
+                    <p style="color: var(--muted); max-width: 400px;">
+                        Transformando negócios através da inteligência artificial. 
+                        Soluções personalizadas para automatizar, integrar e crescer.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 style="margin-bottom: 1rem;">Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#solucoes">Soluções</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 style="margin-bottom: 1rem;">Contato</h3>
+                    <ul class="footer-links">
+                        <li>contato@primeiramente.com.br</li>
+                        <li>(31) 99452-2520</li>
+                        <li>Brasil</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© <span id="year"></span> Primeira Mente - Soluções em IA. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- n8n Chat Widget Script -->
+    <script type="module">
+        import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+        
+        createChat({
+            webhookUrl: 'https://douglas-n8n.zvqify.easypanel.host/webhook/a7aed82e-9803-478d-9659-fdbd13ae76be/chat'
+        });
+    </script>
+
+    <script>
+        // Update year
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Smooth scroll function
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+                // Close mobile menu if open
+                document.getElementById('mobile-nav').classList.remove('active');
+                document.getElementById('menu-icon').textContent = '☰';
+            }
+        }
+        
+        // Toggle mobile menu
+        function toggleMenu() {
+            const mobileNav = document.getElementById('mobile-nav');
+            const menuIcon = document.getElementById('menu-icon');
+            
+            if (mobileNav.classList.contains('active')) {
+                mobileNav.classList.remove('active');
+                menuIcon.textContent = '☰';
+            } else {
+                mobileNav.classList.add('active');
+                menuIcon.textContent = '✕';
+            }
+        }
+        
+        // Handle form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Here you would typically send the data to a backend
+            console.log('Form submitted:', data);
+            
+            // Show success message
+            alert('Mensagem enviada! Entraremos em contato em breve.');
+            
+            // Reset form
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>
