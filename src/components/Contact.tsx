@@ -42,41 +42,7 @@ const Contact = () => {
 
           <div className="grid md:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <div>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                    Nome Completo
-                  </label>
-                  <Input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Seu nome" required className="w-full" />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                    E-mail
-                  </label>
-                  <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} placeholder="seu@email.com" required className="w-full" />
-                </div>
-
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
-                    Telefone
-                  </label>
-                  <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} placeholder="(00) 00000-0000" className="w-full" />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                    Mensagem
-                  </label>
-                  <Textarea id="message" name="message" value={formData.message} onChange={handleChange} placeholder="Conte-nos sobre seu projeto..." required rows={6} className="w-full" />
-                </div>
-
-                <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90">
-                  Enviar Mensagem
-                </Button>
-              </form>
-            </div>
+            
 
             {/* Contact Info */}
             <div className="space-y-8">
