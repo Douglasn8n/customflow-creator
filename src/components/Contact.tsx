@@ -35,9 +35,9 @@ const Contact = () => {
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
               Vamos Conversar?
             </h2>
-            <p className="text-xl text-muted-foreground">
-              Estamos prontos para transformar seu negócio com IA
-            </p>
+            <p className="text-xl text-muted-foreground">Estamos prontos para transformar seu negócio com IA
+Entre em contato pelo Whatsapp
+(31) 99452-2520</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
