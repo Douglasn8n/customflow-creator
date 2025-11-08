@@ -4,33 +4,31 @@ import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    message: "",
+    message: ""
   });
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Here you would typically send the form data to a backend
     toast.success("Mensagem enviada! Entraremos em contato em breve.");
-    setFormData({ name: "", email: "", phone: "", message: "" });
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
     setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
+      name: "",
+      email: "",
+      phone: "",
+      message: ""
     });
   };
-
-  return (
-    <section id="contato" className="py-20 bg-background">
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+  return <section id="contato" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
@@ -47,84 +45,34 @@ const Contact = () => {
             <div>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-foreground mb-2"
-                  >
+                  <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                     Nome Completo
                   </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Seu nome"
-                    required
-                    className="w-full"
-                  />
+                  <Input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Seu nome" required className="w-full" />
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-foreground mb-2"
-                  >
+                  <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
                     E-mail
                   </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="seu@email.com"
-                    required
-                    className="w-full"
-                  />
+                  <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} placeholder="seu@email.com" required className="w-full" />
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="phone"
-                    className="block text-sm font-medium text-foreground mb-2"
-                  >
+                  <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
                     Telefone
                   </label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="(00) 00000-0000"
-                    className="w-full"
-                  />
+                  <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} placeholder="(00) 00000-0000" className="w-full" />
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-foreground mb-2"
-                  >
+                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
                     Mensagem
                   </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Conte-nos sobre seu projeto..."
-                    required
-                    rows={6}
-                    className="w-full"
-                  />
+                  <Textarea id="message" name="message" value={formData.message} onChange={handleChange} placeholder="Conte-nos sobre seu projeto..." required rows={6} className="w-full" />
                 </div>
 
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full bg-primary hover:bg-primary/90"
-                >
+                <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90">
                   Enviar Mensagem
                 </Button>
               </form>
@@ -151,10 +99,7 @@ const Contact = () => {
                     <h4 className="font-semibold text-foreground mb-1">
                       E-mail
                     </h4>
-                    <a
-                      href="mailto:contato@primeiramente.com.br"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
+                    <a href="mailto:contato@primeiramente.com.br" className="text-muted-foreground hover:text-primary transition-colors">
                       contato@primeiramente.com.br
                     </a>
                   </div>
@@ -168,12 +113,7 @@ const Contact = () => {
                     <h4 className="font-semibold text-foreground mb-1">
                       Telefone
                     </h4>
-                    <a
-                      href="tel:+5500000000000"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      (00) 0000-0000
-                    </a>
+                    <a href="tel:+5500000000000" className="text-muted-foreground hover:text-primary transition-colors">(31) 99452-2520</a>
                   </div>
                 </div>
 
@@ -192,23 +132,11 @@ const Contact = () => {
                 </div>
               </div>
 
-              <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 mt-8">
-                <h4 className="font-semibold text-foreground mb-2">
-                  Horário de Atendimento
-                </h4>
-                <p className="text-muted-foreground text-sm">
-                  Segunda a Sexta: 9h às 18h
-                </p>
-                <p className="text-muted-foreground text-sm">
-                  Sábado: 9h às 13h
-                </p>
-              </div>
+              
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Contact;
